@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{{ page_title|default('Clinical Dashboard') }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styledoctorhome.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="profile-header">
+                <div class="avatar-container">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI1CR85j32kj27xc_JwXBHMOH79W9KeK8KvSP_iPpCwdzTmBBY2uS3KBgro9wv7IznFbfwSdAs_A_AV4_Z0YrbtzRUViPwh0knGHHDC1wzKTY2CADSyD_EMPCTZTWPgkbklD1zL0GY-An6kz2rvuC_nthqdlK30zWM1NUBmyKvtQ0Yeja8hAJPe9UTwDQUxh8esfbJ2ni-pFbw-QIE-VSiLE3vVhedaEpyzynNoHuSqHjLr1ZqAsHX6WP4tD5PTdpkGKinqxRTk9M" class="avatar" alt="Dr. IMG">
+                    <span class="status-indicator online"></span>
+                </div>
+                <div class="profile-info">
+                    <h3>HealthHelp</h3>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <span class="material-symbols-outlined">dashboard</span> Dashboard
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                
+            </div>
+            </a>
+      </nav>
+      <div class="sidenav-footer">
+        <a href="{{ url_for('logout') }}" class="nav-item active">
+    <span class="material-symbols-outlined">logout</span>
+    <span>Logout</span>
+        </a>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="welcome-text">
+                    <h1>Welcome back,Dr. {{ doctor.name}}</h1>
+                    <p>Here is your daily summary and patient alerts.</p>
+                </div>
+                <button class="btn btn-primary">
+                    <a href="{{ url_for('add_patient') }}" class="btn btn-primary">
+                    <span class="material-symbols-outlined">add</span> Add New Patient
+                   </a>
+                </button>
+            </header>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon-bg blue"><span class="material-symbols-outlined">groups</span></div>
+                    <div class="stat-data">
+                        <p class="label">Total Patients</p>
+                        <div class="value-row">
+                        <span class="value">{{ patients | length }}</span>
+                    </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="table-section">
+                <div class="table-controls">
+                    <h2>Recent Patients</h2>
+                    <div class="control-actions">
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>PATIENT NAME</th>
+                <th>AGE</th>
+                <th>GENDER</th>
+                <th>BLOOD GROUP</th>
+                <th class="text-right">ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+            <tr>
+                <td>
+                    <div class="patient-cell">
+                        <strong>{{ patient.name }}</strong>
+                    </div>
+                </td>
+
+                <td>{{ patient.age }}</td>
+
+                <td>{{ patient.gender or "Not Specified" }}</td>
+
+                <td>{{ patient.blood_group or "Not Known" }}</td>
+
+                <td class="text-right">
+                    <a href="{{ url_for('view_patient', patient_id=patient.id) }}"
+                       class="action-icon"
+                       title="View Patient">
+                        <span class="material-symbols-outlined">visibility</span>
+                    </a>
+                    <a href="{{ url_for('ai_assistant', patient_id=patient.id) }}"
+                       class="action-icon primary"
+                       title="Run AI Diagnosis">
+                        <span class="material-symbols-outlined">smart_toy</span>
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" style="text-align:center; padding:20px;">
+                    No patients found.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Patient | MediAI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='add_patient.css') }}">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-left">
+        <div class="logo-group">
+            <span class="material-symbols-outlined icon-primary">medical_services</span>
+            <h2 class="brand">HealthHelp</h2>
+        </div>
+    </div>
+
+    <div class="nav-right">
+        <div>
+            <p class="dr-name">{{ session.username }}</p>
+            <p class="dept">Doctor</p>
+        </div>
+        <div class="profile-circle"></div>
+    </div>
+</header>
+
+<main class="container">
+    <h1>Patient Details</h1>
+
+    <section class="card">
+        <div class="card-header">
+            <span class="material-symbols-outlined icon-primary">person</span>
+            <h3>Patient Demographics</h3>
+        </div>
+
+        <div class="card-body grid-2">
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" value="{{ patient.name }}" disabled>
+            </div>
+
+            <div class="input-group">
+                <label>Age</label>
+                <input type="number" value="{{ patient.age }}" disabled>
+            </div>
+
+            <div class="grid-2-inner">
+                <div class="input-group">
+                    <label>Gender</label>
+                    <input type="text" value="{{ patient.gender or 'Not Specified' }}" disabled>
+                </div>
+
+                <div class="input-group">
+                    <label>Blood Group</label>
+                    <input type="text" value="{{ patient.blood_group or 'Not Known' }}" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-header">
+            <span class="material-symbols-outlined icon-primary">history_edu</span>
+            <h3>Medical History</h3>
+        </div>
+
+        <div class="card-body">
+            <div class="input-group">
+                <label>Medical History</label>
+                <textarea disabled>{{ patient.medical_history }}</textarea>
+            </div>
+
+            <div class="input-group">
+                <label>Allergies</label>
+                <textarea disabled>{{ patient.allergies }}</textarea>
+            </div>
+
+            <div class="input-group">
+                <label>Family History</label>
+                <textarea disabled>{{ patient.family_history }}</textarea>
+            </div>
+
+            <div class="input-group">
+                <label>Lifestyle</label>
+                <textarea disabled>{{ patient.lifestyle }}</textarea>
+            </div>
+        </div>
+
+        <div class="form-footer">
+            <a href="{{ url_for('doctor_home') }}" class="btn btn-ghost">
+                Back to Dashboard
+            </a>
+
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

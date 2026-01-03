@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AI Result Page - MedAI Clinical Support</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-body">
+    <header class="main-header">
+        <div class="nav-top">
+            <div class="logo">
+                <span class="material-symbols-outlined icon-primary">local_hospital</span>
+                <h2>MedAI <span class="sub-text">Clinical Support</span></h2>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn"><span class="material-symbols-outlined">notifications</span></button>
+                <button class="icon-btn"><span class="material-symbols-outlined">settings</span></button>
+                <div class="profile-pic"></div>
+            </div>
+        </div>
+        <div class="patient-context">
+            <span><strong>Patient:</strong> John Doe</span>
+            <span><strong>ID:</strong> 84932</span>
+            <span><strong>Age/Sex:</strong> 45 / M</span>
+            <div class="vitals-mini">
+                <span><span class="material-symbols-outlined">favorite</span> 72 bpm</span>
+                <span><span class="material-symbols-outlined">blood_pressure</span> 120/80</span>
+                <span class="text-warning"><span class="material-symbols-outlined">oxygen_saturation</span> 94%</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <div>
+                <a href="#" class="back-link"><span class="material-symbols-outlined">arrow_back</span> Back to Patient List</a>
+                <h1>AI Analysis Result</h1>
+                <p>Analysis complete. Please review findings before confirming diagnosis.</p>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-outline"><span class="material-symbols-outlined">edit</span> Modify Inputs</button>
+                <button class="btn btn-primary"><span class="material-symbols-outlined">check_circle</span> Confirm Diagnosis</button>
+            </div>
+        </div>
+
+        <div class="disclaimer-banner">
+            <div class="banner-content">
+                <span class="material-symbols-outlined banner-icon">warning</span>
+                <div>
+                    <strong>Medical Disclaimer</strong>
+                    <p>AI-generated insights are for clinical decision support only. Final diagnosis must be made by a qualified medical professional.</p>
+                </div>
+            </div>
+            <a href="#" class="legal-link">Read full legal terms</a>
+        </div>
+
+        <div class="dashboard-grid">
+            <section class="left-col">
+                <div class="card risk-card">
+                    <div class="card-header">
+                        <h3><span class="material-symbols-outlined">analytics</span> Overall Risk Assessment</h3>
+                        <div class="badge badge-danger">High Risk</div>
+                    </div>
+                    <div class="vitals-grid">
+                        <div class="vital-item">
+                            <span class="label">Heart Rate</span>
+                            <span class="value">102 <small>bpm</small></span>
+                            <span class="status status-danger">Elevated</span>
+                        </div>
+                        <div class="vital-item">
+                            <span class="label">Blood Pressure</span>
+                            <span class="value">120/80</span>
+                            <span class="status status-success">Normal</span>
+                        </div>
+                        <div class="vital-item">
+                            <span class="label">SpO2</span>
+                            <span class="value">94 <small>%</small></span>
+                            <span class="status status-warning">Low</span>
+                        </div>
+                        <div class="vital-item">
+                            <span class="label">Respiration</span>
+                            <span class="value">22 <small>rpm</small></span>
+                            <span class="status status-warning">Elevated</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><span class="material-symbols-outlined">diagnosis</span> Possible Conditions</h3>
+                        <button class="text-btn">Show All Probabilities</button>
+                    </div>
+                    <div class="conditions-list">
+                        <div class="condition-item">
+                            <div class="condition-info">
+                                <h4>Pulmonary Embolism <span class="material-symbols-outlined">info</span></h4>
+                                <span class="confidence">92%</span>
+                            </div>
+                            <div class="progress-bar"><div class="progress bg-primary" style="width: 92%"></div></div>
+                        </div>
+                        <div class="condition-item">
+                            <div class="condition-info">
+                                <h4>Acute Bronchitis <span class="material-symbols-outlined">info</span></h4>
+                                <span class="confidence-low">45%</span>
+                            </div>
+                            <div class="progress-bar"><div class="progress bg-gray" style="width: 45%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="right-col">
+                <div class="card">
+                    <div class="card-header-bg">
+                        <strong>Suggested Diagnostic Tests</strong>
+                    </div>
+                    <div class="checklist">
+                        <label class="check-item"><input type="checkbox" checked> CT Pulmonary Angiogram</label>
+                        <label class="check-item"><input type="checkbox"> D-Dimer Test</label>
+                        <label class="check-item"><input type="checkbox"> Chest X-Ray</label>
+                        <button class="btn btn-secondary w-100">Order Selected</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-bg"><strong>Treatment Pathways</strong></div>
+                    <div class="accordion">
+                        <div class="accordion-item" onclick="toggleAccordion(this)">
+                            <div class="acc-header"><span>1. Anticoagulation</span> <span class="material-symbols-outlined">expand_more</span></div>
+                            <div class="acc-content">Administer LMWH immediately.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-3">
+                    <label>Physician Notes</label>
+                    <textarea placeholder="Add specific observations..."></textarea>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
